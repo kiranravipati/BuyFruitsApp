@@ -24,4 +24,9 @@ public class Fruit {
     float getPricePerKg() {
         return pricePerKg;
     }
+
+    //overriding the toString() method
+    public String toString(){
+        return code +" " + name + " " + pricePerKg;
+    }
 }
