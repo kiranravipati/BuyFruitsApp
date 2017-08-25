@@ -10,10 +10,10 @@ public class FruitsInventory {
         fruitsMap = new HashMap<Integer,Fruit>();
 
         // Creating fruits
-        Fruit apple = new Fruit(1,"Apple",100.0f);
-        Fruit banana = new Fruit(2,"Banana",30.0f);
-        Fruit papaya = new Fruit(3,"Papaya",40.0f);
-        Fruit mango = new Fruit(4,"Mango",60.0f);
+        Fruit apple = new Fruit(1,"Apple");
+        Fruit banana = new Fruit(2,"Banana");
+        Fruit papaya = new Fruit(3,"Papaya");
+        Fruit mango = new Fruit(4,"Mango");
 
         // Adding fruits to map
         fruitsMap.put(apple.getCode(), apple);
@@ -37,7 +37,8 @@ public class FruitsInventory {
         for (Map.Entry <Integer, Fruit> entry:fruitsMap.entrySet()){
             int key=entry.getKey();
             Fruit fruit = entry.getValue();
-            System.out.printf("%5d %10s %15.2f", fruit.getCode(), fruit.getName(), fruit.getPricePerKg());
+            float  pricePerKg = PriceManager.priceForFruitCode(fruit.getCode());
+            System.out.printf("%5d %10s %15.2f", fruit.getCode(), fruit.getName(), pricePerKg);
             System.out.println();
         }
     }

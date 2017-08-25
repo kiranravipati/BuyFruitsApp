@@ -22,9 +22,8 @@ public class Order {
 
         //Traversing list
         for (OrderItem orderItem : orderItems) {
-            int fruitCode = orderItem.fruitCode;
-            Fruit fruit = FruitsInventory.getFruitByCode(fruitCode);
-            System.out.printf("%5d %10s %10d \n", fruitCode, fruit.getName(), orderItem.quantity);
+            Fruit fruit = FruitsInventory.getFruitByCode(orderItem.fruitCode);
+            System.out.print(orderItem);
         }
     }
 
@@ -37,15 +36,16 @@ public class Order {
 
         int quantityOrdered, fruitCode;
         Fruit fruit;
-        float totalAmount = 0, amount;
+        float totalAmount = 0, amount, pricePerKg;
 
         for (OrderItem orderItem : orderItems) {
             fruitCode = orderItem.fruitCode;
             quantityOrdered = orderItem.quantity;
             fruit = FruitsInventory.getFruitByCode(fruitCode);
-            amount = fruit.getPricePerKg() * quantityOrdered;
+            pricePerKg = PriceManager.priceForFruitCode(fruitCode);
+            amount = pricePerKg * quantityOrdered;
             totalAmount += amount;
-            System.out.printf("%10s %10s %15.2f %15.2f \n", fruit.getName(), quantityOrdered, fruit.getPricePerKg(), amount);
+            System.out.printf("%10s %10s %15.2f %15.2f \n", fruit.getName(), quantityOrdered, pricePerKg, amount);
         }
 
         System.out.println("------------------------------------------------------");
